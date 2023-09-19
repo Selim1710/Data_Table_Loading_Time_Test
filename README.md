@@ -1,5 +1,18 @@
-<p align="center"> Data table and laravel pagination table loading time test and sending data from one server to another </a></p>
+<h3 align="center"> Data table and laravel pagination table loading time test and sending data from one server to another </a></h3>
 
+## Documentation:
+* Problem-1: Check data table and laravel pagination table loading time.
+* Problem-2: When any user do login, sent date,time,user_info of that user into another server.
+
+# Solution-1:
+    $startTime = microtime(true);
+    // here is the table
+    $endTime = microtime(true);
+    $executionTime = $endTime - $startTime;
+
+# Solution-2:
+* Install guzzle_package: composer require guzzlehttp/guzzle
+* Then go to UserController >> 
 
 ## Data table:
 
