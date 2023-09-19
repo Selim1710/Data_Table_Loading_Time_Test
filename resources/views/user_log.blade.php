@@ -35,6 +35,9 @@
 
                     {{-- @dd($datas); --}}
 
+                    @php
+                        $string_data = '';
+                    @endphp
                     @forelse ($datas as $key=>$data)
                         <tr>
                             <td>{{ ++$key }}</td>
@@ -42,11 +45,25 @@
                             <td>{{ $data['time'] }}</td>
                             <td>{{ $data['user'] }}</td>
                         </tr>
+
+                        @php
+                            $string_data .= implode(' ', [$key]) . ' - ' . implode(' ', [$data['date']]) . ' ' . implode('', [$data['time']]) . ", \n";
+                        @endphp
                     @empty
                         <tr>
                             <td colspan="4" class="text-center text-danger">No data</td>
                         </tr>
                     @endforelse
+
+                    @php
+                        $file_location = 'testing_file.text';
+                        $file_open = fopen($file_location, 'w+');
+                        // writing in text file
+                        fwrite($file_open, $string_data);
+                        // echo fwrite($file_open, $string_data);
+                        fclose($file_open);
+                    @endphp
+
 
                     @php
                         $endTime = microtime(true);

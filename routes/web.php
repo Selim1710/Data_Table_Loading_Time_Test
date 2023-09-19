@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\ResearchAndDevelopMentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 // check datatable
-Route::get('/', [UserController::class, 'index'])->name('index');
-Route::get('/data', [UserController::class, 'data'])->name('data');
+Route::get('/', [ResearchAndDevelopMentController::class, 'index'])->name('index');
+Route::get('/data', [ResearchAndDevelopMentController::class, 'data'])->name('data');
 
 // check laravel pagination 
-Route::get('/laravel/paginate/check', [UserController::class, 'paginateCheck'])->name('laravel.paginate.check');
-Route::get('/refresh/log', [UserController::class, 'refreshLog']);
-Route::get('/log', [UserController::class, 'log']);
+Route::get('/laravel/paginate/check', [ResearchAndDevelopMentController::class, 'paginateCheck'])->name('laravel.paginate.check');
+Route::get('/refresh/log', [ResearchAndDevelopMentController::class, 'refreshLog']);
+Route::get('/log', [ResearchAndDevelopMentController::class, 'log']);
+
 
 

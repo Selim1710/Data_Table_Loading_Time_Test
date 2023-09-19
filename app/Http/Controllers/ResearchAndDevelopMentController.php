@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Http;
 
-class UserController extends Controller
+class ResearchAndDevelopMentController extends Controller
 {
     public function index(Request $request)
     {
@@ -41,6 +41,7 @@ class UserController extends Controller
 
         return view('user_log', compact('datas'));
     }
+
     public function refreshLog()
     {
         $client = new \GuzzleHttp\Client();
@@ -49,6 +50,21 @@ class UserController extends Controller
             'time' => date('H:i:s'),
             'user' => 'guest',
         ]);
+
         return back();
+    }
+
+    public function writingInTextFile()
+    {
+        $file_location = 'testing_file.text';
+
+        // Open a file named - $file_location - in write mode
+        $data = fopen($file_location, "w");
+
+        // writing content to a file using fwrite() function
+        echo fwrite($data, "hello");
+
+        // closing the file
+        fclose($data);
     }
 }
