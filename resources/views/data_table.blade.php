@@ -31,8 +31,9 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container d-flex justify-content-between">
         <a href="{{ route('laravel.paginate.check') }}" class="my-4">paginate-check</a>
+        <a href="{{ url('/log') }}" class="my-4">user-log</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

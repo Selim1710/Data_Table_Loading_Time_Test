@@ -14,15 +14,18 @@
         use Carbon\Carbon;
     @endphp
     <div class="container">
+        <div class="d-flex">
+            <h3 class="mb-3 text-center">User Log: </h3>
+            <a href="{{ url('/refresh/log') }}" class="mt-2 ms-2">Refresh</a>
+        </div>
         <div class="row">
-            <h3 class="mb-3 text-center">Laravel Pagination: </h3>
-
             <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>User</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,15 +33,18 @@
                         $startTime = microtime(true);
                     @endphp
 
+                    {{-- @dd($datas); --}}
+
                     @forelse ($datas as $key=>$data)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $data->name }}</td>
-                            <td>{{ $data->email }}</td>
+                            <td>{{ $data['date'] }}</td>
+                            <td>{{ $data['time'] }}</td>
+                            <td>{{ $data['user'] }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="text-center text-danger">No data</td>
+                            <td colspan="4" class="text-center text-danger">No data</td>
                         </tr>
                     @endforelse
 
@@ -54,16 +60,16 @@
         <h5 class="mb-3 text-center d-flex">
             Loading time: &nbsp;
             <p>{{ $executionTime ?? 0 }}</p>
-            {{-- <p>{{  Carbon::parse($executionTime)->format('s') ?? 0 }}</p> --}}
         </h5>
-    </div>
-    <div class="d-flex justify-content-end">
-        <div>{!! $datas->links() !!}</div>
     </div>
 
     <div class="container d-flex justify-content-between">
-        <a href="{{ route('index') }}" class="my-4">data-table-check</a>
+        <a href="{{ route('index') }}" class="ps-4">data-table-check</a>
         <a href="{{ url('/log') }}" class="my-4">user-log</a>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        {{-- <div>{!! $datas->links() !!}</div> --}}
     </div>
 
 
