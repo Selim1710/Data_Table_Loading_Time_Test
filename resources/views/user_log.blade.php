@@ -22,8 +22,8 @@
             </h5>
         </div>
         <div class="d-flex justify-content-between my-2">
-            <a href="{{ url('/refresh/log') }}" class="mt-2 ms-2">Refresh</a>
-            <a href="{{ asset('/testing_file.text') }}" class="mt-2 ms-2">view text file</a>
+            {{-- <a href="{{ url('/refresh/log') }}" class="mt-2 ms-2">Refresh</a> --}}
+            <a href="testing_file.text" target="_blank" class="mt-2 ms-2">view text file</a>
         </div>
         <div class="row">
             <table class="table table-bordered datatable">
@@ -58,7 +58,7 @@
                     @endforelse
 
                     @php
-                        $file_location = 'testing_file.text';
+                        $file_location = ('testing_file.text');
                         $file_open = fopen($file_location, 'w+');
                         // writing in text file
                         fwrite($file_open, $string_data);
