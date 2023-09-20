@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Http;
 use App\DataTables\UsersDataTable;
+use App\Models\UserLoginLog;
 
 class ResearchAndDevelopMentController extends Controller
 {
@@ -26,20 +27,32 @@ class ResearchAndDevelopMentController extends Controller
     public function log()
     {
         $client = new \GuzzleHttp\Client();
-        $get_response = $client->request('GET', 'https://acquaintbd.net/test/eduNextSRM/user/log/view');
+        $get_response = $client->request('GET', 'https://acquaintbd.net/test/MainServer/user/log/view');
         $datas = json_decode($get_response->getBody(), true);
 
         return view('user_log', compact('datas'));
     }
 
-    public function refreshLog()
+    public function logCreate(Request $request)
     {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', 'https://acquaintbd.net/test/eduNextSRM/user/log', [
+        // $data = $request->all();
+        // return $data;
+        UserLoginLog::create([
             'date' => date('Y-m-d'),
             'time' => date('H:i:s'),
             'user' => 'guest',
         ]);
+    }
+    public function logView()
+    {
+        $data = UserLoginLog::all();
+        return $data;
+    }
+
+    public function refreshLog()
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://acquaintbd.net/test/MainServer/user/log/create');
 
         return back();
     }
