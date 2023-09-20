@@ -6,34 +6,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Http;
-use App\DataTables\UsersDataTable; 
+use App\DataTables\UsersDataTable;
 
 class ResearchAndDevelopMentController extends Controller
 {
-    public function index(UsersDataTable $dataTable)  
-    {  
-        // return 'hi';
-        return $dataTable->render('users');  
-    }  
-
-    // public function index(Request $request)
-    // {
-    //     return view('data_table');
-    // }
-
-    public function data(Request $request)
+    public function index(UsersDataTable $dataTable)
     {
-        $data = User::query();
-
-        // $data = User::orderBy('id', 'desc')
-        //     ->get();
-
-        $table = DataTables::of($data)
-            ->addIndexColumn()
-            ->make(true);
-
-        return $table;
+        return $dataTable->render('data_table');
     }
+
     public function paginateCheck(Request $request)
     {
         $datas = User::orderBy('id', 'desc')
