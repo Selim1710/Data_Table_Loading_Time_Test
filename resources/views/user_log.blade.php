@@ -14,9 +14,16 @@
         use Carbon\Carbon;
     @endphp
     <div class="container">
-        <div class="d-flex">
-            <h3 class="mb-3 text-center">User Log: </h3>
+        <div class="">
+            <h3 class="mb-3 text-center">User Log </h3>
+            <h5 class="mb-3 text-center d-flex">
+                Loading time: &nbsp;
+                <p class="time_showing"></p>
+            </h5>
+        </div>
+        <div class="d-flex justify-content-between my-2">
             <a href="{{ url('/refresh/log') }}" class="mt-2 ms-2">Refresh</a>
+            <a href="{{ asset('/testing_file.text') }}" class="mt-2 ms-2">view text file</a>
         </div>
         <div class="row">
             <table class="table table-bordered datatable">
@@ -58,18 +65,9 @@
                         // echo fwrite($file_open, $string_data);
                         fclose($file_open);
                     @endphp
-
-
-
-
                 </tbody>
             </table>
         </div>
-
-        <h5 class="mb-3 text-center d-flex">
-            Loading time: &nbsp;
-            <p class="time_showing"></p>
-        </h5>
     </div>
 
     <div class="container d-flex justify-content-between">
