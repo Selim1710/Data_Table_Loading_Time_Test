@@ -16,12 +16,15 @@
             <h5 class="mb-3 text-center d-flex">
                 Loading time: &nbsp;
                 <p class="time_showing"></p>
-                {{-- This page took {{ microtime(true) - LARAVEL_START }} seconds --}}
             </h5>
             <table class="table table-bordered datatable">
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Name</th>
                         <th>Email</th>
                         {{-- <th width="100px">Action</th> --}}
@@ -41,34 +44,76 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+
+    
     <script type="text/javascript">
         $(document).ready(function() {
 
-            // var startTime = 10;
-            var startTime = @json(microtime(true));
-
             var table = $('.datatable').DataTable({
+                dom: 'Bfrtip',
                 processing: true,
                 serverSide: true,
+                scrollX: 500,
+                scrollY: 450,
+                buttons: true,
+                buttons: [
+                    'print'
+                ],
+
+                // dom:"lBfrtip",
+                // buttons:["csv","excel","print"],
+
+                // dom: 'Blfrtip',
+                // buttons: [{
+                //         extend: 'pdf',
+                //         exportOptions: {
+                //             columns: [1, 2, 3, 4, 5] // Column index which needs to export
+                //         }
+                //     },
+                //     {
+                //         extend: 'csv',
+                //         exportOptions: {
+                //             columns: [0, 5] // Column index which needs to export
+                //         }
+                //     },
+                //     {
+                //         extend: 'excel',
+                //     }
+                // ],
+
                 "ajax": {
                     "type": "GET",
                     "url": "/data",
-                    // "success": function() {
-                    //     alert("Done!");
-                    // }
                 },
                 "drawCallback": function() {
-                    // var endTime = 15;
-                    var endTime = @json(microtime(true));
-                    
-                    var executionTime = parseFloat(endTime) - parseFloat(startTime);
-                    $('.time_showing').text(executionTime + ' Second');
-
-                    // $('.time_showing').text('startTime: ' + startTime+' endTime: ' + endTime + ' executionTime: ' + executionTime);
+                    // 
                 },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
+                columns: [
+                    // {
+                    //     data: 'DT_RowIndex',
+                    //     name: 'DT_RowIndex'
+                    // },
+                    {
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'name',
@@ -79,28 +124,30 @@
                         name: 'email'
                     },
                     // {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
 
             });
-            // var endTime = @json(microtime(true));
-            // var executionTime = parseFloat(endTime) - parseFloat(startTime);
-            // $('.time_showing').text(executionTime);
-
-            // console.log(table);
-
-            // var time = @json(microtime(true) - LARAVEL_START);
-            // $('.time_showing').text(time);
         });
     </script>
 
 
-    {{-- 
-        $startTime = microtime(true);
-        $users = User::get();
-        $endTime = microtime(true);  
-        $executionTime = $endTime - $startTime;
+    <script>
+        var beforeload = (new Date()).getTime();
 
-  --}}
+        function getPageLoadTime() {
+
+            //calculate the current time in afterload
+            var afterload = (new Date()).getTime();
+
+            // now use the beforeload and afterload to calculate the seconds
+            seconds = (afterload - beforeload) / 1000;
+
+            // Place the seconds in the innerHTML to show the results
+            $(".time_showing").text(seconds + ' sec(s).');
+        }
+
+        window.onload = getPageLoadTime;
+    </script>
 </body>
 
 </html>

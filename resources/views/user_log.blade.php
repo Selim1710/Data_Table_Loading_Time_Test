@@ -25,16 +25,11 @@
                         <th>#</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>User</th>
+                        {{-- <th>User</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $startTime = microtime(true);
-                    @endphp
-
                     {{-- @dd($datas); --}}
-
                     @php
                         $string_data = '';
                     @endphp
@@ -43,11 +38,11 @@
                             <td>{{ ++$key }}</td>
                             <td>{{ $data['date'] }}</td>
                             <td>{{ $data['time'] }}</td>
-                            <td>{{ $data['user'] }}</td>
+                            {{-- <td>{{ $data['user'] }}</td> --}}
                         </tr>
 
                         @php
-                            $string_data .= implode(' ', [$key]) . ' - ' . implode(' ', [$data['date']]) . ' ' . implode('', [$data['time']]) . ", \n";
+                            $string_data .= implode('', [$key]) . ' - ' . implode('', [$data['date']]) . ' ' . implode('', [$data['time']]) . " \n";
                         @endphp
                     @empty
                         <tr>
@@ -65,10 +60,7 @@
                     @endphp
 
 
-                    @php
-                        $endTime = microtime(true);
-                        $executionTime = $endTime - $startTime;
-                    @endphp
+
 
                 </tbody>
             </table>
@@ -76,7 +68,7 @@
 
         <h5 class="mb-3 text-center d-flex">
             Loading time: &nbsp;
-            <p>{{ $executionTime ?? 0 }}</p>
+            <p class="time_showing"></p>
         </h5>
     </div>
 
@@ -89,6 +81,32 @@
         {{-- <div>{!! $datas->links() !!}</div> --}}
     </div>
 
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        var beforeload = (new Date()).getTime();
+
+        function getPageLoadTime() {
+
+            //calculate the current time in afterload
+            var afterload = (new Date()).getTime();
+
+            // now use the beforeload and afterload to calculate the seconds
+            seconds = (afterload - beforeload) / 1000;
+
+            // Place the seconds in the innerHTML to show the results
+            $(".time_showing").text(seconds + ' sec(s).');
+        }
+
+        window.onload = getPageLoadTime;
+    </script>
 
 </body>
 

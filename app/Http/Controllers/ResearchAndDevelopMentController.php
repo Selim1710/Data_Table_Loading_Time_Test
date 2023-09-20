@@ -6,18 +6,27 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Http;
+use App\DataTables\UsersDataTable; 
 
 class ResearchAndDevelopMentController extends Controller
 {
-    public function index(Request $request)
-    {
-        return view('data_table');
-    }
+    public function index(UsersDataTable $dataTable)  
+    {  
+        // return 'hi';
+        return $dataTable->render('users');  
+    }  
+
+    // public function index(Request $request)
+    // {
+    //     return view('data_table');
+    // }
 
     public function data(Request $request)
     {
-        $data = User::orderBy('id', 'desc')
-            ->get();
+        $data = User::query();
+
+        // $data = User::orderBy('id', 'desc')
+        //     ->get();
 
         $table = DataTables::of($data)
             ->addIndexColumn()
@@ -28,7 +37,7 @@ class ResearchAndDevelopMentController extends Controller
     public function paginateCheck(Request $request)
     {
         $datas = User::orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(50);
 
         return view('paginate_check', compact('datas'));
     }
