@@ -26,4 +26,5 @@
 
 
 ## User Log:
-![user log](https://github.com/Selim1710/Data_Table_Loading_Time_Test_-_Sending-_data_one_server_to_another/assets/93088169/fd8d9994-9d13-46c6-8e0b-ca322b5891ad)
+
+![user log](https://github.com/Selim1710/Data_Table_Loading_Time_Test_and_Sending-_data_one_server_to_another/assets/93088169/8074f9e8-85ff-49f2-9c35-2efd3e30f70e)
