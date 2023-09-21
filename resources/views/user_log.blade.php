@@ -32,7 +32,7 @@
                         <th>#</th>
                         <th>Date</th>
                         <th>Time</th>
-                        {{-- <th>User</th> --}}
+                        <th>Website</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                             <td>{{ ++$key }}</td>
                             <td>{{ $data['date'] }}</td>
                             <td>{{ $data['time'] }}</td>
-                            {{-- <td>{{ $data['user'] }}</td> --}}
+                            <td>{{ $data['user'] }}</td>
                         </tr>
 
                         @php
