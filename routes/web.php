@@ -15,15 +15,14 @@ Route::get('/reboot', function () {
 
 
 // check datatable
-Route::get('/', [ResearchAndDevelopMentController::class, 'index'])->name('index');
-Route::get('/data', [ResearchAndDevelopMentController::class, 'data'])->name('data');
+Route::get('/', [ResearchAndDevelopMentController::class, 'dataTable'])->name('index');
 
-// check laravel pagination 
+// check laravel pagination table
 Route::get('/laravel/paginate/check', [ResearchAndDevelopMentController::class, 'paginateCheck'])->name('laravel.paginate.check');
-Route::get('/refresh/log', [ResearchAndDevelopMentController::class, 'refreshLog']);
+
+
+// user login details in child server
 Route::get('/log', [ResearchAndDevelopMentController::class, 'log']);
-
-
-// user log
+Route::get('/refresh/log', [ResearchAndDevelopMentController::class, 'refreshLog']);
 Route::get('/user/log/view', [ResearchAndDevelopMentController::class, 'logView'])->name('user.log.view');
 Route::get('/user/log/create', [ResearchAndDevelopMentController::class, 'logCreate'])->name('user.log.create');

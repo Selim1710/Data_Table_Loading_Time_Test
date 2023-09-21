@@ -18,7 +18,11 @@
 </head>
 
 <body>
-
+    <style>
+        .dataTables_length{
+            margin-left: 250px;
+        }
+    </style>
     <div class="container">
         <h1> Yajra Datatables</h1>
         <h5 class="mb-3 text-center d-flex">

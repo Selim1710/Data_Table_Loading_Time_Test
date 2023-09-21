@@ -11,7 +11,7 @@ use App\Models\UserLoginLog;
 
 class ResearchAndDevelopMentController extends Controller
 {
-    public function index(UsersDataTable $dataTable)
+    public function dataTable(UsersDataTable $dataTable)
     {
         return $dataTable->render('data_table');
     }
@@ -26,8 +26,9 @@ class ResearchAndDevelopMentController extends Controller
 
     public function log()
     {
+        // there showing main server data
         $client = new \GuzzleHttp\Client();
-        $get_response = $client->request('GET', 'https://acquaintbd.net/test/MainServer/user/log/view');
+        $get_response = $client->request('GET', 'https://rmghealthcarebd.com/MainServer/user/log/view');
         $datas = json_decode($get_response->getBody(), true);
 
         return view('user_log', compact('datas'));
@@ -52,9 +53,12 @@ class ResearchAndDevelopMentController extends Controller
     public function refreshLog()
     {
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://acquaintbd.net/test/MainServer/user/log/create');
+        $response = $client->request('GET', 'https://rmghealthcarebd.com/MainServer/user/log/create/www.acquaintbd.net');
 
         return back();
+
+        // let, Refresh-button is child server login button,
+        // when user click on login button then data will sent into main server 
     }
 
     public function writingInTextFile()
